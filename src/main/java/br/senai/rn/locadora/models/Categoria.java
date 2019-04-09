@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "categorias")
-public class Categoria extends AuditableEntity {
+public class Categoria extends AuditedEntity {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

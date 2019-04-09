@@ -11,10 +11,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.query.Param;
 
-import br.senai.rn.locadora.models.AuditableEntity;
+import br.senai.rn.locadora.models.AuditedEntity;
 
 @NoRepositoryBean
-public interface GenericRepository<T extends AuditableEntity> extends JpaRepository<T, Long> {
+public interface GenericRepository<T extends AuditedEntity> extends JpaRepository<T, Long> {
 
 	@Override
 	@Transactional

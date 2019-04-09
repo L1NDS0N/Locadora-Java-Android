@@ -3,6 +3,8 @@ package br.senai.rn.locadora.models;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -12,13 +14,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import br.senai.rn.locadora.repositories.PersistableEntity;
 
-public abstract class AuditableEntity implements Comparable<AuditableEntity>, PersistableEntity<Long>{
+@MappedSuperclass
+public abstract class AuditedEntity implements Comparable<AuditedEntity>, PersistableEntity<Long>{
 
 	@CreatedDate
 	@Column(name = "data_criacao", nullable = false, updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCriacao;
+	private Date dataCriacao = new Date();
 	
 	
 	@LastModifiedDate
@@ -44,7 +47,12 @@ public abstract class AuditableEntity implements Comparable<AuditableEntity>, Pe
 	public void setDataModificacao(Date dataModificacao) {
 		this.dataModificacao = dataModificacao;
 	}
-
+	//Usado para atualizar a data toda vez que alterado
+	@PreUpdate
+	private void PreUpdate() {
+		this.dataModificacao = new Date();
+	}
+	
 	public Boolean getAtivo() {
 		return ativo;
 	}
@@ -58,7 +66,7 @@ public abstract class AuditableEntity implements Comparable<AuditableEntity>, Pe
 	}
 
 	@Override
-	public int compareTo(AuditableEntity entity) {
+	public int compareTo(AuditedEntity entity) {
 		
 		return this.getId().compareTo(entity.getId());
 	}

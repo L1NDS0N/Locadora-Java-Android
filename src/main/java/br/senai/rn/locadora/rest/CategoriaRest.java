@@ -19,7 +19,7 @@ public class CategoriaRest {
 	
 	@GetMapping
 	public List<Categoria> buscarTodos() {
-		return service.buscarTodos();
+		return service.obterTodos();
 	}
 	
 }

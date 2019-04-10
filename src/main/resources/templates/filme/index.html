@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-4">
                 <fieldset>
-                    <legend>Filmes</legend>
+                    <legend>FilmesKK</legend>
                     <form
                     th:action="@{/filme}"
                     th:object="${filme}"
@@ -36,6 +36,7 @@
                 class="form-control"
                 />
             </div>
+
             <div class="form-group">
                 <label for="categoria">Categoria</label>
                 <select
@@ -46,44 +47,43 @@
                 th:field="*{categoria}"
                 class="form-control"
                 />
-            <option th:each="categoria : ${categorias}"
-                th:value="${categoria.id}"
-                th:text="${categoria.nome}">
-            </option>
-        </div>
-        <div class="form-group">
-            <label for="duracao">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</label>
-            <input
-            type="time"
-            name="duracao"
-            id="duracao"
-            th:value="*{duracao}"
-            th:field="*{duracao}"
-            class="form-control"
-            />
-        </div>
-        <div class="form-group">
-            <label for="descricao">Descrição</label>
-            <input
-            type="text"
-            name="descricao"
-            id="descricao"
-            th:value="*{descricao}"
-            th:field="*{descricao}"
-            class="form-control"
-            />
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-6">
-                    <button type="submit" class="btn btn-warning">
-                        Salvar
-                    </button>
+                <option th:each="categoria : ${categoriaLista}" th:value="${categoria.id}" :text="${categoria.nome}"></option>
+            </div>
+
+            <div class="form-group">
+                <label for="duracao">KKKK</label>
+                <input
+                type="time"
+                name="duracao"
+                id="duracao"
+                th:value="*{duracao}"
+                th:field="*{duracao}"
+                class="form-control"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <input
+                type="text"
+                name="descricao"
+                id="descricao"
+                th:value="*{descricao}"
+                th:field="*{descricao}"
+                class="form-control"
+                />
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-warning">
+                            Salvar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
-</fieldset>
+        </form>
+    </fieldset>
 </div>
 <div class="col-6">
     <fieldset>
@@ -100,7 +100,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="filme : ${filmes}">
+                <tr th:each="filme : ${filmeLista}">
                     <td th:text="${filme.id}"></td>
                     <td th:text="${filme.titulo}"></td>
                     <td th:text="${filme.categoria.nome}"></td>

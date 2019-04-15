@@ -12,6 +12,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.senai.rn.locadora.repositories.PersistableEntity;
 
 @MappedSuperclass
@@ -21,17 +23,20 @@ public abstract class AuditedEntity implements Comparable<AuditedEntity>, Persis
 	@Column(name = "data_criacao", nullable = false, updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonIgnore
+	//JsonIgnore usado para ocultar no cabeçalho get do protocolo http
 	private Date dataCriacao = new Date();
 	
 	
 	@LastModifiedDate
 	@Column(name ="data_modificacao", nullable = true)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonIgnore
 	private Date dataModificacao;
-	
 	@Column(name = "ativo", nullable = false)
+	@JsonIgnore
 	private Boolean ativo = true;
-
+	@JsonIgnore
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}

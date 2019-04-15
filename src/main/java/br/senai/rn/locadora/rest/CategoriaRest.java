@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,15 @@ public class CategoriaRest {
 	@Autowired
 	private CategoriaService service;
 	
-	@GetMapping
+	@GetMapping("/todos")
 	public List<Categoria> buscarTodos() {
 		return service.obterTodos();
 	}
+	
+	@GetMapping("/{id}")
+	public Categoria obter(@PathVariable Long id) {
+		return service.obter(id);
+	}
+	
 	
 }

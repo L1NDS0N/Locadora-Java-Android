@@ -19,6 +19,7 @@ public class FilmeController extends AbstractController<Filme>{
 	public Class<Filme> getClassType() {
 		return Filme.class;
 	}
+	
 	@Autowired
 	private CategoriaService categoriaService;
 	

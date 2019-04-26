@@ -13,17 +13,17 @@
             <div class="row">
                 <div class="col-4">
                     <fieldset>
-                        <legend>Cadastro</legend>
-                        <form th:action="@{/categoria}" th:object="${categoria}" method="post">
+                        <legend>Cadastro de Cópias</legend>
+                        <form th:action="@{/copia}" th:object="${copia}" method="post">
                             <input type="hidden" name="id" id="id" th:value="*{id}" th:field="*{id}">
                             <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="nome" id="nome" th:value="*{nome}" th:field="*{nome}" class="form-control" placeholder="Nome" autocomplete="off" autofocus>
+                                <label for="titulo">Nome</label>
+                                <input type="text" name="titulo" id="titulo" th:value="*{titulo}" th:field="*{titulo}" class="form-control" placeholder="Título" autocomplete="off" autofocus>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="fone">Valor</label>
                                 <input type="number" name="valor" id="valor" value="0" th:value="*{valor}" th:field="*{valor}" class="form-control" min="0" max="20" step="0.1" placeholder="Valor" autocomplete="off">
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-6">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-8">
                     <fieldset>
-                        <legend>Lista de Categorias</legend>
+                        <legend>Lista de Cópias</legend>
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -54,14 +54,14 @@
                             </thead>
                             <tbody>
                                 <tr th:each="categoria : ${categoriaList}">
-                                    <td th:text="${categoria.id}"></td>
-                                    <td th:text="${categoria.nome}"></td>
-                                    <td th:text="${categoria.valor}"></td>
+                                    <td th:text="${copia.id}"></td>
+                                    <td th:text="${copia.titulo}"></td>
+                                    <!-- <td th:text="${copia.valor}"></td> -->
                                     <td>
-                                        <a th:href="@{/categoria/editar/{id}(id=${categoria.id})}" class="btn btn-success btn-sm">
+                                        <a th:href="@{/copia/editar/{id}(id=${copia.id})}" class="btn btn-success btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a th:href="@{/categoria/remover/{id}(id=${categoria.id})}" class="btn btn-danger btn-sm" onclick="confirmar();">
+                                        <a th:href="@{/copia/remover/{id}(id=${copia.id})}" class="btn btn-danger btn-sm" onclick="confirmar();">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </td>

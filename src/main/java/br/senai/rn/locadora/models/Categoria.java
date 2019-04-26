@@ -6,26 +6,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "Categoria")
+@Entity
 @Table(name = "categorias")
-public class Categoria implements Comparable<Categoria> {
+public class Categoria extends AuditedEntity {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private Double valor;
-	private Boolean ativo;
 	
-	@SuppressWarnings("deprecation")
-	public Categoria() {
-		ativo = new Boolean(true);
-	}
-	
+	@Override
 	public Long getId() {
 		return id;
 	}
 	
+	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -35,7 +31,7 @@ public class Categoria implements Comparable<Categoria> {
 	}
 	
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.trim().toUpperCase();
 	}
 	
 	public Double getValor() {
@@ -46,14 +42,6 @@ public class Categoria implements Comparable<Categoria> {
 		this.valor = valor;
 	}
 	
-	public Boolean getAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -82,11 +70,6 @@ public class Categoria implements Comparable<Categoria> {
 	@Override
 	public String toString() {
 		return "Categoria [id=" + id + ", nome=" + nome + ", valor=" + valor + "]";
-	}
-
-	@Override
-	public int compareTo(Categoria categoria) {
-		return this.id.compareTo(categoria.id);
 	}
 	
 }
